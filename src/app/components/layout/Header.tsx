@@ -43,7 +43,7 @@ export default function Header() {
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="/calender">
-              Calender
+              Calender logo
             </Link>
           </NavbarItem>
         
