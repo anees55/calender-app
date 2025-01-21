@@ -1,9 +1,3 @@
-import MySchedule from "./components/calender/MySchedule";
-
-export default function Home() {
-  return (
-    <>
-      <MySchedule />
-    </>
-  );
+export default function Page() {
+  return <h1>Hello Next.js!</h1>
 }

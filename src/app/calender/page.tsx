@@ -1,5 +1,5 @@
 import React from 'react'
-import MySchedule from '../components/calender/MySchedule'
+import MySchedule from '../../components/calender/MySchedule'
 
 export default function calender() {
   return (

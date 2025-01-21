@@ -5,13 +5,13 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
   Avatar,
 } from "@heroui/react";
+import Link from "next/link";
 
 export const AcmeLogo = () => {
   return (
@@ -25,29 +25,50 @@ export const AcmeLogo = () => {
     </svg>
   );
 };
+
+const navigationLinks = [
+  {
+    label: "Dashboard",
+    href: "/dashboard",
+    isActive: (pathName: string) => pathName === "/dashboard",
+  },
+  {
+    label: "Calender",
+    href: "/calender",
+    isActive: (pathName: string) => pathName === "/calender",
+  },
+];
+
+
+import { usePathname } from "next/navigation";
 export default function Header() {
+
+  const pathName =usePathname();
+console.log(pathName);
   return (
-    <div>
+    <div className="">
       <Navbar>
         <NavbarBrand>
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
 
+
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive>
-            <Link aria-current="page" color="secondary" href="/dashboard">
-              Dashboard
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="/calender">
-              Calender logo
-            </Link>
-          </NavbarItem>
-        
+          {navigationLinks.map((link) => (
+            <NavbarItem key={link.href} isActive={link.isActive(pathName)}>
+              <Link
+                aria-current={link.isActive(pathName) ? "page" : undefined}
+                color={link.isActive(pathName) ? "secondary" : "foreground"}
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+            </NavbarItem>
+          ))}
         </NavbarContent>
 
+        
         <NavbarContent as="div" justify="end">
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
